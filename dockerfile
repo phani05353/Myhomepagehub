@@ -9,7 +9,7 @@ RUN npm run build
 # STAGE 2: Python Backend
 FROM python:3.11-slim
 WORKDIR /app
-COPY backend/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
 # Copy the built React app to a folder named 'static'
