@@ -48,3 +48,16 @@ async def serve_frontend(catchall: str):
     if os.path.exists(index_path):
         return FileResponse(index_path)
     return {"error": "Frontend build files not found in /static"}
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+if os.path.exists(os.path.join(STATIC_DIR, "assets")):
+    app.mount("/assets", StaticFiles(directory=os.path.join(STATIC_DIR, "assets")), name="assets")
+
+@app.get("/{catchall:path}")
+async def serve_frontend(catchall: str):
+    index_path = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"error": f"Not found at {index_path}"}
