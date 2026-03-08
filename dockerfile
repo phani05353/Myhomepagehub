@@ -12,7 +12,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
-# Copy the built React app to a folder named 'static'
-COPY --from=frontend-build /app/frontend/dist ./static
+
+# Ensure the static directory exists and copy the built React app
+COPY --from=frontend-build /app/frontend/dist /app/static
 
 CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
