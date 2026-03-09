@@ -29,10 +29,10 @@ function App() {
           fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
             .then(res => res.json())
             .then(geo => {
-              const cityName = geo.address.city || geo.address.town || geo.address.village || 'Local';
+              const cityName = geo.address.city || geo.address.town || geo.address.village || geo.display_name.split(',')[0];
               setCity(cityName);
             })
-            .catch(() => setCity('Local'));
+            .catch(() => setCity('Unknown Location'));
         })
         .catch((err) => console.error("Weather Link Failure:", err));
     };
