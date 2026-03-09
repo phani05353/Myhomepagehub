@@ -70,25 +70,25 @@ function App() {
       }}
     >
       {/* --- TOP SECTION: CLOCK & WEATHER --- */}
-      <header className="flex justify-between items-start animate-fade-in">
-        <div className="bg-black/30 backdrop-blur-xl p-6 rounded-3xl border border-white/10 shadow-2xl">
-          <h1 className="text-6xl font-extralight tracking-tighter text-white">
+      <header className="flex flex-row justify-between items-start gap-3 md:gap-6 animate-fade-in">
+        <div className="bg-black/30 backdrop-blur-xl p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl text-left flex-1 md:flex-none">
+          <h1 className="text-3xl md:text-6xl font-extralight tracking-tighter text-white">
             {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </h1>
-          <p className="text-blue-400 uppercase tracking-[0.3em] text-[10px] mt-2 font-bold">
+          <p className="text-blue-400 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[8px] md:text-[10px] mt-1 md:mt-2 font-bold">
             {time.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
           </p>
         </div>
 
         {weather && (
-          <div className="bg-black/30 backdrop-blur-xl p-6 rounded-3xl border border-white/10 shadow-2xl text-right">
-            <p className="text-4xl font-bold text-white">{Math.round(weather.temperature)}°F</p>
-            <p className="text-blue-300 text-xs uppercase tracking-widest mt-1">{city}</p>
+          <div className="bg-black/30 backdrop-blur-xl p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl text-right flex-1 md:flex-none">
+            <p className="text-3xl md:text-4xl font-bold text-white">{Math.round(weather.temperature)}°F</p>
+            <p className="text-blue-300 text-[10px] md:text-xs uppercase tracking-widest mt-1 truncate max-w-[100px] md:max-w-none ml-auto">{city}</p>
             
             <form 
               action="https://www.google.com/search" 
               method="GET"
-              className="mt-6 w-64 ml-auto"
+              className="mt-4 md:mt-6 w-full md:w-64 md:ml-auto hidden sm:block"
             >
               <div className="relative group">
                 <input 
@@ -110,14 +110,14 @@ function App() {
       </header>
 
       {/* --- BOTTOM SECTION: NASA INFO --- */}
-      <footer className="max-w-2xl animate-fade-in-up">
+      <footer className="max-w-2xl animate-fade-in-up mt-auto md:mt-0">
         <div className="bg-black/30 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
           <div className="flex items-center gap-3 mb-3">
             <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
             <h2 className="text-sm font-bold uppercase tracking-widest text-blue-400">NASA Image of the Day</h2>
           </div>
-          <h3 className="text-2xl font-semibold text-white mb-3 leading-tight">{spaceData.title}</h3>
-          <p className="text-slate-300 text-sm leading-relaxed max-h-10 hover:max-h-[500px] overflow-hidden transition-[max-height] duration-700 ease-in-out cursor-help">
+          <h3 className="text-xl md:text-2xl font-semibold text-white mb-3 leading-tight">{spaceData.title}</h3>
+          <p className="text-slate-300 text-sm leading-relaxed max-h-12 md:max-h-10 hover:max-h-[500px] overflow-hidden transition-[max-height] duration-700 ease-in-out cursor-help">
             {spaceData.explanation}
           </p>
         </div>
